@@ -1,29 +1,31 @@
 package com.book.store.api.book_store.domain;
 
-import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "category")
+@Table(name = "copy")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class Copy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
-    @ManyToMany(mappedBy = "categories")
-    private Set<Book> books;
+    private String code;
+
+    private boolean available;
 }

@@ -13,17 +13,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "category")
+@Table(name = "author")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
+    private String nationality;
+
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books;
 }
